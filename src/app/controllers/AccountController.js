@@ -1,14 +1,15 @@
 const Account = require('../models/Account');
+const Post = require('../models/Post');
 const { mongooseToObject } = require('../../util/mongoose');
 const jwt = require('jsonwebtoken');
 
 class AccountController {
 
-    register(req, res, next) {
+    register (req, res, next) {
         res.render('accounts/register');
     }
 
-    confirmRegister(req, res, next) {
+    confirmRegister (req, res, next) {
         var username = req.body.username;
         var password = req.body.password;
         var retypepassword = req.body.retypepassword;
@@ -31,7 +32,7 @@ class AccountController {
         });
     }
 
-    confirmLogin(req, res, next) {
+    confirmLogin (req, res, next) {
         const username = req.body.username;
         const password = req.body.password;
         Account.findOne({username, password})
@@ -46,6 +47,20 @@ class AccountController {
                     }
                 })
             .catch(err => res.json('Server error: ' + err));
+    }
+
+    create (req, res, next) {
+        res.render('posts/create');
+    }
+
+    store (req, res, next) {
+        console.log(req.body);
+        const post = new Post(req.body);
+        post.save()
+            .then(
+                () => res.redirect('/welcome')
+            )
+            .catch(next); 
     }
 }
 

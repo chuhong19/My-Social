@@ -1,1 +1,21 @@
-WELCOME
+<h1>Welcome</h1>
+<a href="/account/create">Trust something</a>
+<div class="mt-4">
+    <div class="row">
+
+        {{#each posts}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card card-course-item">
+                <div class="card-body">
+                    <a href="/posts/{{this._id}}">
+                        <h5 class="card-title">{{this.title}}</h5>
+                    </a>
+                    <p class="card-text">{{this.text}}</p>
+                    <a href="#" class="btn btn-primary">Like</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+</div>

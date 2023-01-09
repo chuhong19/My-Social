@@ -1,3 +1,5 @@
+const Post = require('../models/Post');
+const { mongooseToObject, mutipleMongooseToObject } = require('../../util/mongoose');
 
 class SiteController {
 
@@ -6,7 +8,12 @@ class SiteController {
     }
 
     welcome (req, res, next) {
-        res.render('welcome');
+        Post.find({})
+            .then(posts => {
+                res.render('welcome', {
+                    posts: mutipleMongooseToObject(posts)
+                });
+            })
     }
 }
 
