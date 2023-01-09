@@ -3,6 +3,8 @@ const {engine} = require('express-handlebars');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+
 const app = express();
 const port = 3000;
 
@@ -12,6 +14,7 @@ const db = require('./config');
 // Connect to DB
 db.connect();
 
+app.use(cookieParser());
 app.use(methodOverride('_method'));
 
 // HTTP logger

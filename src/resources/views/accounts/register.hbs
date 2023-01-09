@@ -1,9 +1,7 @@
-<h1>Welcome to TruthSocial</h1>
-
 <div class="mt-4">
-    <h3>Login</h3>
+    <h3>Create a new account</h3>
 
-    <form method="POST" action="/account/login">
+    <form method="POST" action="/account/register">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username">
@@ -12,7 +10,10 @@
             <label for="password">Password</label>
             <input type="text" class="form-control" id="password" name="password">
         </div>     
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <div class="form-group">
+            <label for="retypepassword">Retype password</label>
+            <input type="text" class="form-control" id="retypepassword" name="retypepassword">
+        </div> 
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
-<a href="/account/register">Register</a>
