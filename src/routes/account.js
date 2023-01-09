@@ -9,5 +9,6 @@ router.post('/register', accountController.confirmRegister);
 router.post('/login', accountController.confirmLogin);
 router.get('/create', accountController.create);
 router.post('/store', accountController.store);
+router.get('/logout', accountController.logout);
 
 module.exports = router;

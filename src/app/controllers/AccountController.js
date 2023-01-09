@@ -54,13 +54,25 @@ class AccountController {
     }
 
     store (req, res, next) {
-        console.log(req.body);
-        const post = new Post(req.body);
-        post.save()
-            .then(
-                () => res.redirect('/welcome')
-            )
-            .catch(next); 
+        try {
+            var token = req.cookies.token;
+            var authorId = jwt.verify(token, 'mk');
+            console.log(authorId);
+            const post = new Post(req.body);
+            post.authorId = authorId;
+            post.save()
+                .then(
+                    () => res.redirect('/welcome')
+                )
+                .catch(next);
+        } catch (err) {
+            res.json('Please login first');
+        }
+    }
+
+    logout (req, res, next) {
+        res.clearCookie('token');
+        res.redirect('/');
     }
 }
 
